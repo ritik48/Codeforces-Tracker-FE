@@ -2,13 +2,16 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home/Home";
 import { Student } from "./pages/Students/Student";
+import { ThemeProvider } from "./components/theme-provider";
 
 export const Layout = () => {
   return (
-    <div>
-      <NavBar />
-      <Outlet />
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div>
+        <NavBar />
+        <Outlet />
+      </div>
+    </ThemeProvider>
   );
 };
 
