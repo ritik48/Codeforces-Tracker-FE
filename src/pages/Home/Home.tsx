@@ -23,6 +23,96 @@ const features = [
   },
 ];
 
+import { Calendar, User, Star, MessageCircle, Globe } from "lucide-react";
+
+interface UserProfileProps {
+  data: {
+    firstName: string;
+    lastName: string;
+    handle: string;
+    country: string;
+    city?: string;
+    organization?: string;
+    contribution: number;
+    friendOfCount: number;
+    rating: number;
+    maxRating: number;
+    rank: string;
+    maxRank: string;
+    lastOnlineTimeSeconds: number;
+    registrationTimeSeconds: number;
+    avatar: string;
+  };
+}
+
+export default function UserProfileCard({
+  data,
+}: {
+  data: UserProfileProps["data"];
+}) {
+  const formatDate = (seconds: number) =>
+    new Date(seconds * 1000).toLocaleDateString();
+
+  return (
+    <div className="max-w-md w-full rounded-2xl border shadow-lg p-6 bg-white dark:bg-zinc-900 dark:text-white">
+      <div className="flex items-center gap-4">
+        <img
+          src={data.avatar}
+          alt={data.handle}
+          className="w-20 h-20 rounded-full border"
+        />
+        <div>
+          <h2 className="text-2xl font-semibold">
+            {data.firstName} {data.lastName}
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400">@{data.handle}</p>
+          <p className="text-sm mt-1 capitalize">
+            <span className="font-medium">{data.rank}</span> (max:{" "}
+            {data.maxRank})
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-4 space-y-2 text-sm">
+        <div className="flex items-center gap-2">
+          <Globe className="w-4 h-4" />
+          <span>
+            {data.city}, {data.country}
+          </span>
+        </div>
+        {data.organization && (
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4" />
+            <span>{data.organization}</span>
+          </div>
+        )}
+        <div className="flex items-center gap-2">
+          <Star className="w-4 h-4" />
+          <span>
+            Rating: {data.rating} (max: {data.maxRating})
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <User className="w-4 h-4" />
+          <span>Contribution: {data.contribution}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Users className="w-4 h-4" />
+          <span>Friend of: {data.friendOfCount} users</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <MessageCircle className="w-4 h-4" />
+          <span>Last online: {formatDate(data.lastOnlineTimeSeconds)}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Calendar className="w-4 h-4" />
+          <span>Registered: {formatDate(data.registrationTimeSeconds)}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Home() {
   return (
     <section className="py-24 md:py-40">
@@ -64,6 +154,26 @@ export function Home() {
             ))}
           </div>
         </div>
+        {/* <UserProfileCard
+          data={{
+            lastName: "Garg",
+            country: "India",
+            lastOnlineTimeSeconds: 1749923761,
+            city: "Faridabad",
+            rating: 1166,
+            friendOfCount: 3,
+            titlePhoto: "https://userpic.codeforces.org/no-title.jpg",
+            handle: "Tanush_Garg",
+            avatar: "https://userpic.codeforces.org/no-avatar.jpg",
+            firstName: "Tanush",
+            contribution: 0,
+            organization: "IIIT Hyderabad",
+            rank: "newbie",
+            maxRating: 1166,
+            registrationTimeSeconds: 1723465404,
+            maxRank: "newbie",
+          }}
+        /> */}
       </div>
     </section>
   );

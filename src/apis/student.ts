@@ -1,4 +1,4 @@
-import type { StudentFormType } from "@/pages/Students/components/CreateAndEditStudentForm";
+import type { StudentFormType } from "@/pages/AllStudents/components/CreateAndEditStudentForm";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
