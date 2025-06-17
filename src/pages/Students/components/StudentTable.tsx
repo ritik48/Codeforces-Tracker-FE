@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import type { StudentType } from "@/types";
 import { DeleteStudentButton } from "./DeleteStudentButton";
 import { CreateAndEditStudentDialog } from "./CreateAndEditStudent";
+import { toast } from "sonner";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 const studentTableHeader: { key: keyof StudentType; label: string }[] = [
   { key: "name", label: "Name" },
@@ -77,6 +80,30 @@ export function StudentTable() {
     return sortAscending ? (aVal > bVal ? 1 : -1) : aVal < bVal ? 1 : -1;
   });
 
+  const downloadCSV = async () => {
+    try {
+      const res = await fetch(`${BACKEND_URL}/student/download`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!res.ok) throw new Error("Failed to download");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "students.csv";
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download error:", error);
+      toast.error("Download failed");
+    }
+  };
+
   return (
     <div className="">
       <div className="flex sm:flex-row items-start flex-col sm:gap-0 gap-3 sm:items-center sm:justify-between my-4 sm:my-4">
@@ -92,7 +119,7 @@ export function StudentTable() {
               editMode={false}
               setStudents={setStudents}
             />
-            <Button>Download CSV</Button>
+            <Button onClick={downloadCSV}>Download CSV</Button>
           </div>
         )}
       </div>
