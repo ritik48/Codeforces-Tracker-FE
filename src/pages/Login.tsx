@@ -1,6 +1,5 @@
 "use client";
 
-import { loginUser } from "@/apis/user";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,10 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { toast } from "sonner";
+import { Link, Navigate } from "react-router-dom";
 import { z } from "zod";
 
 const userSchema = z.object({
@@ -25,19 +24,17 @@ export function Login() {
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
   });
+  const { login, username } = useAuth();
 
   const isSubmitting = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof userSchema>) => {
-    const res = await loginUser(values.username, values.password);
-    console.log(res);
-
-    if (!res.success) {
-      toast.error(res.message);
-      return;
-    }
-    toast.success(res.message);
+    login(values.username, values.password);
   };
+
+  if (username) {
+    return <Navigate to="/" replace={true} />;
+  }
 
   return (
     <section className="flex-1 flex flex-col">
