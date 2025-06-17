@@ -3,6 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Award, Code, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const features = [
+  {
+    title: "Student Management",
+    description:
+      "Organize and manage your students with custom syncing options.",
+    icon: Users,
+  },
+  {
+    title: "Performance Analytics",
+    description: "Enhanced performance metrics from codeforces data.",
+    icon: TrendingUp,
+  },
+  {
+    title: "Progress Tracking",
+    description:
+      "Monitor contest participation, rating changes, and problem-solving patterns.",
+    icon: Award,
+  },
+];
+
 export function Home() {
   return (
     <section className="py-24 md:py-40">
@@ -27,38 +47,21 @@ export function Home() {
               <Link to="/login">Get Started</Link>
             </Button>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl mt-20 sm:mt-40 px-4 sm:px-0">
-            <div className="flex flex-col items-center space-y-2 text-center border rounded-2xl border-gray-200 p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Users className="h-6 w-6 text-primary" />
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center space-y-2 text-center border rounded-2xl dark:border-gray-700 border-gray-200 p-6"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <feature.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground sm:w-full w-[90%]">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold">Student Management</h3>
-              <p className="text-sm text-muted-foreground sm:w-full w-[90%]">
-                Organize and manage your students with custom syncing options.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center space-y-2 text-center border rounded-2xl border-gray-200 p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <TrendingUp className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold">Performance Analytics</h3>
-              <p className="text-sm text-muted-foreground sm:w-full w-[90%]">
-                Enhanced performance metrics from codeforces data.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center space-y-2 text-center border rounded-2xl border-gray-200 p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold">Progress Tracking</h3>
-              <p className="text-sm text-muted-foreground sm:w-full w-[90%]">
-                Monitor contest participation, rating changes, and
-                problem-solving patterns
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
