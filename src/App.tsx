@@ -1,7 +1,7 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home/Home";
-import { Student } from "./pages/AllStudents/Student";
+import { Student } from "./pages/AllStudents/AllStudent";
 import { ThemeProvider } from "./components/theme-provider";
 import { Login } from "./pages/Login";
 import { Toaster } from "./components/ui/sonner";
