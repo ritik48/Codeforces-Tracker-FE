@@ -3,6 +3,8 @@ import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home/Home";
 import { Student } from "./pages/Students/Student";
 import { ThemeProvider } from "./components/theme-provider";
+import { Login } from "./pages/Login";
+import { Toaster } from "./components/ui/sonner";
 
 export const Layout = () => {
   return (
@@ -11,6 +13,7 @@ export const Layout = () => {
         <NavBar />
         <Outlet />
       </div>
+      <Toaster position="top-right" offset={{ top: 60 }} />
     </ThemeProvider>
   );
 };
@@ -21,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/student" element={<Student />} />
         </Route>
       </Routes>
