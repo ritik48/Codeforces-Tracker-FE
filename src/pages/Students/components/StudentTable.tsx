@@ -11,15 +11,10 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Pagination } from "./Pagination";
 import { fetchAllStudents } from "@/apis/student";
-
-interface StudentType {
-  name?: string;
-  email?: string;
-  phone?: string;
-  cf_handle: string;
-  current_rating?: number;
-  max_rating?: number;
-}
+import { useNavigate } from "react-router-dom";
+import type { StudentType } from "@/types";
+import { DeleteStudentButton } from "./DeleteStudentButton";
+import { CreateAndEditStudentDialog } from "./CreateAndEditStudent";
 
 const studentTableHeader: { key: keyof StudentType; label: string }[] = [
   { key: "name", label: "Name" },
@@ -36,6 +31,7 @@ export function StudentTable() {
   const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const limit = 10;
 
   const [sortField, setSortField] = useState<keyof StudentType>("name");
@@ -50,8 +46,6 @@ export function StudentTable() {
         setError(res.message);
         return;
       }
-
-      console.log({ res });
 
       setStudents(res.data);
       setTotalPages(res.totalPages);
@@ -94,7 +88,10 @@ export function StudentTable() {
         </h2>
         {!error && (
           <div className="flex gap-2">
-            <Button variant="outline">Add Student</Button>
+            <CreateAndEditStudentDialog
+              editMode={false}
+              setStudents={setStudents}
+            />
             <Button>Download CSV</Button>
           </div>
         )}
@@ -135,8 +132,14 @@ export function StudentTable() {
             </TableHeader>
 
             <TableBody>
-              {sortedData.map((student, i) => (
-                <TableRow key={i}>
+              {sortedData.map((student, _) => (
+                <TableRow
+                  className="cursor-pointer"
+                  onClick={() => {
+                    navigate(`/student/${student._id}`);
+                  }}
+                  key={student._id}
+                >
                   <TableCell>{student.name || "-"}</TableCell>
                   <TableCell>{student.email || "-"}</TableCell>
                   <TableCell>{student.phone || "-"}</TableCell>
@@ -145,13 +148,28 @@ export function StudentTable() {
                   <TableCell>{student.max_rating || "-"}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
-                      <Button size="sm" variant="outline">
+                      <CreateAndEditStudentDialog
+                        editMode={true}
+                        setStudents={setStudents}
+                        student={student}
+                      />
+
+                      {/* <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={(e) => e.stopPropagation()} // Prevent row click when clicking button
+                      >
                         Edit
-                      </Button>
-                      <Button size="sm" variant="outline">
-                        Delete
-                      </Button>
-                      <Button size="sm" variant="ghost">
+                      </Button> */}
+                      <DeleteStudentButton
+                        studentId={student._id}
+                        setStudents={setStudents}
+                      />
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         View
                       </Button>
                     </div>
