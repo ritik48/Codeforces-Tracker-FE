@@ -25,7 +25,9 @@ export const NavBar = () => {
               Logout
             </Button>
           ) : (
-            <Button size={"sm"}>Login</Button>
+            <Button size={"sm"}>
+              <Link to="/login">Login</Link>
+            </Button>
           )}
         </div>
       </div>
