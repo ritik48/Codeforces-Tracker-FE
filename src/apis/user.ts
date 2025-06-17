@@ -22,3 +22,44 @@ export const loginUser = async (username: string, password: string) => {
     return { success: false, message: "Login failed due to an error" };
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return { success: false, message: data.message || "Logout failed" };
+    }
+
+    return { success: true, message: "Logout successful" };
+  } catch (error) {
+    console.error("Logout failed:", error);
+    return { success: false, message: "Logout failed due to an error" };
+  }
+};
+
+export const getAuthUser = async () => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/user`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to fetch user",
+      };
+    }
+
+    return { success: true, user: data.user };
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    return { success: false, message: "Failed to fetch user due to an error" };
+  }
+};
