@@ -5,14 +5,17 @@ import { Student } from "./pages/Students/Student";
 import { ThemeProvider } from "./components/theme-provider";
 import { Login } from "./pages/Login";
 import { Toaster } from "./components/ui/sonner";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export const Layout = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div>
-        <NavBar />
-        <Outlet />
-      </div>
+      <AuthProvider>
+        <div>
+          <NavBar />
+          <Outlet />
+        </div>
+      </AuthProvider>
       <Toaster position="top-right" offset={{ top: 60 }} />
     </ThemeProvider>
   );
