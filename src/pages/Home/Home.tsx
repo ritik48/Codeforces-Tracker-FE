@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 import { Award, Code, TrendingUp, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -24,6 +25,7 @@ const features = [
 ];
 
 export function Home() {
+  const { username } = useAuth();
   return (
     <section className="py-24 md:py-40">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -43,8 +45,8 @@ export function Home() {
           </div>
 
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Button size="lg" className="px-8">
-              <Link to="/login">Get Started</Link>
+            <Button className="py-5 px-6">
+              <Link to={username ? "/students" : "/login"}>Get Started</Link>
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl mt-20 sm:mt-40 px-4 sm:px-0">
