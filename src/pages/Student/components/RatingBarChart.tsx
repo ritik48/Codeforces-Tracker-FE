@@ -20,6 +20,11 @@ export function RatingBarChart({
     },
   } as ChartConfig;
 
+  const sortedData = data.sort((a, b) => {
+    const getLowerBound = (range: string) => parseInt(range.split("-")[0]);
+    return getLowerBound(a.rating) - getLowerBound(b.rating);
+  });
+
   return (
     <div className="w-full border rounded-xl p-4 shadow-sm">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
@@ -31,7 +36,7 @@ export function RatingBarChart({
       </div>
 
       <ChartContainer config={chartConfig} className="h-[300px] w-full">
-        <BarChart data={data}>
+        <BarChart data={sortedData}>
           <XAxis dataKey="rating" tickLine={false} tickMargin={10} />
           <YAxis tickLine={false} tickMargin={10} />
           <ChartLegend content={<ChartLegendContent />} />
