@@ -1,13 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Star, MessageCircle } from "lucide-react";
 
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import type { StudentType } from "@/types";
 import { fetchStudentApi } from "@/apis/student";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ClipLoader } from "react-spinners";
+import { EmailNotificationToggle } from "./EmailNotificationToggle";
 
 export function StudentDetails() {
   const { id } = useParams();
@@ -20,7 +19,6 @@ export function StudentDetails() {
     try {
       setError("");
       setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       const res = await fetchStudentApi(id!);
 
       if (!res.success) {
@@ -75,7 +73,7 @@ export function StudentDetails() {
               )}
             </div>
           </div>
-          <div className="mt-4 space-y-2 text-xs sm:text-sm">
+          <div className="mt-4 space-y-3 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4" />
               <span>
@@ -88,10 +86,7 @@ export function StudentDetails() {
               <MessageCircle className="w-4 h-4" />
               <span>Last Synced: 06/01/2025</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Switch id="airplane-mode" />
-              <Label htmlFor="airplane-mode">Email on</Label>
-            </div>
+            <EmailNotificationToggle email={data?.email} id={id!} />
           </div>
         </>
       )}
