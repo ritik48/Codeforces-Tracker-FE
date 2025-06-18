@@ -63,3 +63,57 @@ export const getAuthUser = async () => {
     return { success: false, message: "Failed to fetch user due to an error" };
   }
 };
+
+export const fetchCronApi = async () => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/cron`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to fetch cron time",
+      };
+    }
+
+    return { success: true, cron_time: data.cron_time };
+  } catch (error) {
+    console.error("Failed to fetch cron time:", error);
+    return {
+      success: false,
+      message: "Failed to fetch cron time due to an error",
+    };
+  }
+};
+
+export const updateCronApi = async (cron_time: string) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/cron`, {
+      method: "PATCH",
+      credentials: "include",
+      body: JSON.stringify({ cron_time }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to update cron time",
+      };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update cron time:", error);
+    return {
+      success: false,
+      message: "Failed to update cron time due to an error",
+    };
+  }
+};
