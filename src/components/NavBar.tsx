@@ -1,7 +1,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { ModeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const NavBar = () => {
   const { username, logout } = useAuth();
@@ -15,18 +15,22 @@ export const NavBar = () => {
           <Link to={"/"} className="font-bold sm:hidden block">
             CF
           </Link>
-          <Link
+          <NavLink
             to="/students"
             className="text-sm text-gray-500 hover:text-gray-700"
           >
             Students
-          </Link>
+          </NavLink>
+          <NavLink
+            to="/setting"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Setting
+          </NavLink>
         </div>
         <div className="flex items-center gap-3">
           {username && (
-            <span className="sm:block hidden">
-              Welcome👋, {username}
-            </span>
+            <span className="sm:block hidden">Welcome👋, {username}</span>
           )}
           <ModeToggle />
           {username ? (
