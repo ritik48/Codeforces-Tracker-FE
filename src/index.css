@@ -119,6 +119,13 @@
   }
 }
 
+.active {
+  color: rgb(220, 220, 220);
+  background-color: rgb(56, 56, 56);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
 /* =================== TO MODIFY THE CALENDAR HEATMAP =================== */
 
 .color-empty {
