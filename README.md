@@ -1,5 +1,9 @@
 ## Codeforces Tracker Frontend
 
+[Live](https://codeforces-tracker-fe.vercel.app)
+[Demo Video](https://drive.google.com/file/d/1mEC47bVewFhB7tITXtlcLjZstfHVTscC/view?usp=sharing)
+[Backend](https://github.com/ritik48/Codeforces-Tracker-BE)
+
 Codeforces Tracker is a web-application that allows an admin to track students' progress on Codeforces. It provides a an option to add students, sync their data from codeforces and then display insights on their progress.
 
 ### Features
