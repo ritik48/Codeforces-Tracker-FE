@@ -11,3 +11,13 @@ export interface StudentType {
   rank?: string;
   max_rank?: string;
 }
+
+export interface ContestDataType {
+  _id: string;
+  contestName: string;
+  date: string;
+  oldRating: number;
+  newRating: number;
+  rank: number;
+  unsolvedProblems: number;
+}
