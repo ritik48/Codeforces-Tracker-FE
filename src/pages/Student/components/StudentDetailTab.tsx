@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { ContestHistory } from "./ContestHistory";
 import { DateFilter } from "./DateFilter";
 import { useState } from "react";
+import { SubmissionData } from "./SubmissionData";
 
 export function StudentDetailsTab() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +33,7 @@ export function StudentDetailsTab() {
             <ContestHistory days={days} />
           </TabsContent>
           <TabsContent value="submission-data">
-            <div>Submission Data</div>
+            <SubmissionData days={days} />
           </TabsContent>
         </div>
       </Tabs>
