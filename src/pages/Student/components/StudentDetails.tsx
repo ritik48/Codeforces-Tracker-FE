@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Star, MessageCircle } from "lucide-react";
+import { Star, MessageCircle, RefreshCcw } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import type { StudentType } from "@/types";
@@ -87,7 +87,7 @@ export function StudentDetails() {
             </div>
 
             <div className="flex items-center gap-2">
-              <MessageCircle className="w-4 h-4" />
+              <RefreshCcw className="w-4 h-4" />
               <div className="flex flex-col items-start">
                 <span className="text-muted-foreground font-medium">
                   Last Synced:
@@ -103,6 +103,15 @@ export function StudentDetails() {
                       })
                     : "-"}
                 </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" />
+              <div className="flex flex-col items-start">
+                <span className="text-muted-foreground font-medium">
+                  Reminder Sent:
+                </span>
+                <span>{data?.reminder_count || 0}</span>
               </div>
             </div>
             <EmailNotificationToggle
