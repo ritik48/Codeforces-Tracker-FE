@@ -41,7 +41,7 @@ npm install
 ```
 
 4. Make sure you have started the backend server.
-   - If you haven't, follow the instructions in the [backend README](https://github.com/ritik48/Codeforces-Tracker-BE/README.md) to start the server.
+   - If you haven't, follow the instructions in the [backend README](https://github.com/ritik48/Codeforces-Tracker-BE/blob/main/README.md) to start the server.
 
 5. Start the development server:
 
