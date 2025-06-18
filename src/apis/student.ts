@@ -96,8 +96,6 @@ export const editStudentApi = async (
   studentData: StudentFormType
 ) => {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 5000)); // Simulate network delay
-
     const response = await fetch(`${BACKEND_URL}/student/${studentId}`, {
       method: "PATCH",
       credentials: "include",
@@ -224,7 +222,11 @@ export const fetchSubmissionDataApi = async (
   }
 };
 
-export const updateEmailApi = async (studentId: string, email: string, allow_email: boolean) => {
+export const updateEmailApi = async (
+  studentId: string,
+  email: string,
+  allow_email: boolean
+) => {
   try {
     const response = await fetch(`${BACKEND_URL}/student/${studentId}/email`, {
       method: "PATCH",

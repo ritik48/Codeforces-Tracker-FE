@@ -20,7 +20,7 @@ import { ClipLoader } from "react-spinners";
 export function EmailNotificationToggle({
   email,
   id,
-  allow_email
+  allow_email,
 }: {
   email?: string;
   id: string;
@@ -38,7 +38,6 @@ export function EmailNotificationToggle({
     }
     try {
       setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
       const res = await updateEmailApi(id, email!, checked);
 
       if (!res.success) {
