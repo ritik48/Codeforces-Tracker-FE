@@ -17,10 +17,10 @@ export function SubmissionStats({
       <Card className="">
         <CardContent className="p-0">
           <div className="text-center">
-            <Trophy className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+            <Trophy className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
             <p className="text-sm text-gray-600 mb-1">Max Rating Solved</p>
             <p className="font-bold ">{mostDifficultProblem?.rating}</p>
-            <p className="text-xs text-blue-600 mt-1">
+            <p className="text-xs text-[#6262ea] mt-1">
               {mostDifficultProblem?.name}
             </p>
           </div>
@@ -32,7 +32,7 @@ export function SubmissionStats({
           <div className="text-center">
             <Target className="h-8 w-8 text-green-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600 mb-1">Total Solved</p>
-            <p className="text-2xl font-bold">{totalSolvedProblems}</p>
+            <p className="sm:text-2xl font-bold">{totalSolvedProblems}</p>
           </div>
         </CardContent>
       </Card>
@@ -42,7 +42,7 @@ export function SubmissionStats({
           <div className="text-center">
             <TrendingUp className="h-8 w-8 text-purple-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600 mb-1">Avg Rating</p>
-            <p className="text-2xl font-bold">{averageRating}</p>
+            <p className="sm:text-2xl font-bold">{averageRating}</p>
           </div>
         </CardContent>
       </Card>
@@ -52,7 +52,7 @@ export function SubmissionStats({
           <div className="text-center">
             <Activity className="h-8 w-8 text-orange-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600 mb-1">Avg Prob Per Day</p>
-            <p className="text-2xl font-bold">{averageProblemPerDay}</p>
+            <p className="sm:text-2xl font-bold">{averageProblemPerDay}</p>
           </div>
         </CardContent>
       </Card>

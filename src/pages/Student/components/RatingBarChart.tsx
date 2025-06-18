@@ -24,7 +24,9 @@ export function RatingBarChart({
     <div className="w-full border rounded-xl p-4 shadow-sm">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
         <div>
-          <h2 className="text-lg font-semibold">Problems by rating</h2>
+          <h2 className="text-base sm:text-lg font-semibold">
+            Problems by rating
+          </h2>
         </div>
       </div>
 

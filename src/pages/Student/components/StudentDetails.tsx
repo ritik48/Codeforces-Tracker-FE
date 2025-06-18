@@ -62,20 +62,20 @@ export function StudentDetails() {
 
             <div>
               {data?.name && (
-                <h2 className="text-2xl font-semibold">{data?.name}</h2>
+                <h2 className="sm:text-2xl font-semibold">{data?.name}</h2>
               )}
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-400 sm:text-base text-xs">
                 @{data?.cf_handle}
               </p>
               {data?.max_rank && data?.rank && (
-                <p className="text-sm mt-1 capitalize">
+                <p className="text-xs sm:text-sm mt-1 capitalize">
                   <span className="font-medium">{data?.rank}</span> (max:{" "}
                   {data?.max_rank})
                 </p>
               )}
             </div>
           </div>
-          <div className="mt-4 space-y-2 text-sm">
+          <div className="mt-4 space-y-2 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4" />
               <span>
@@ -90,7 +90,7 @@ export function StudentDetails() {
             </div>
             <div className="flex items-center space-x-2">
               <Switch id="airplane-mode" />
-              <Label htmlFor="airplane-mode">Airplane Mode</Label>
+              <Label htmlFor="airplane-mode">Email on</Label>
             </div>
           </div>
         </>

@@ -69,12 +69,12 @@ export function RatingChart({ days }: { days: number }) {
       {!loading && !error && (
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
-            <h2 className="text-lg font-semibold">Rating Progress</h2>
-            <p className="text-sm text-muted-foreground">
+            <h2 className="sm:text-lg font-semibold">Rating Progress</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Last {totalContests} contests
             </p>
           </div>
-          <div className="flex gap-4 text-sm text-muted-foreground">
+          <div className="flex gap-4 text-xs sm:text-sm text-muted-foreground">
             <div>
               Change:{" "}
               <span
