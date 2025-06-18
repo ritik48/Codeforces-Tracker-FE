@@ -5,6 +5,7 @@ import { Login } from "./pages/Login";
 import { Student } from "./pages/Student/Student";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Layout } from "./components/Layout";
+import { CronEditor } from "./pages/CronEditor";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/students" element={<AllStudent />} />
             <Route path="/students/:id" element={<Student />} />
+            <Route path="/setting" element={<CronEditor />} />
           </Route>
         </Route>
       </Routes>
