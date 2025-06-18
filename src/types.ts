@@ -6,4 +6,8 @@ export interface StudentType {
   cf_handle: string;
   current_rating?: number;
   max_rating?: number;
+  allow_email?: boolean;
+  reminder_count?: number;
+  rank?: string;
+  max_rank?: string;
 }
