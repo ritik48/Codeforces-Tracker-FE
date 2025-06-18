@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { SubmissionStats } from "./SubmissionStats";
 import { ClipLoader } from "react-spinners";
 import { RatingBarChart } from "./RatingBarChart";
+import { SubmissionHeatmap } from "./SubmissionHeatmap";
 
 interface SubmissionDataType {
   mostDifficultProblem: number;
@@ -27,8 +28,6 @@ export function SubmissionData({ days }: { days: number }) {
       setLoading(true);
       const res = await fetchSubmissionDataApi(id!, days);
 
-      console.log({ res });
-      console.log({ res });
       if (!res.success) {
         setError(res.message);
         return;
@@ -63,6 +62,8 @@ export function SubmissionData({ days }: { days: number }) {
             averageProblemPerDay={submissionData?.averageProblemPerDay || 0}
           />
           <RatingBarChart data={submissionData?.ratingBucketData || []} />
+
+          <SubmissionHeatmap heatmap={submissionData?.heatmap || []} />
         </>
       )}
     </div>
