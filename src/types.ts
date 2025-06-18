@@ -6,10 +6,11 @@ export interface StudentType {
   cf_handle: string;
   current_rating?: number;
   max_rating?: number;
-  allow_email?: boolean;
+  allow_email: boolean;
   reminder_count?: number;
   rank?: string;
   max_rank?: string;
+  last_sync?: Date;
 }
 
 export interface ContestDataType {
