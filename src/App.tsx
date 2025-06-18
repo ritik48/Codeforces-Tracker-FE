@@ -6,6 +6,7 @@ import { Student } from "./pages/Student/Student";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Layout } from "./components/Layout";
 import { CronEditor } from "./pages/CronEditor";
+import { NotFound } from "./components/NotFount";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/students/:id" element={<Student />} />
             <Route path="/setting" element={<CronEditor />} />
           </Route>
+          <Route path="/*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
