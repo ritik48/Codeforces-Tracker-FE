@@ -223,3 +223,32 @@ export const fetchSubmissionDataApi = async (
     };
   }
 };
+
+export const updateEmailApi = async (studentId: string, email: string, allow_email: boolean) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/student/${studentId}/email`, {
+      method: "PATCH",
+      credentials: "include",
+      body: JSON.stringify({ email, allow_email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to update email",
+      };
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update email:", error);
+    return {
+      success: false,
+      message: "Failed to update email due to an error",
+    };
+  }
+};
