@@ -46,9 +46,16 @@ export function StudentDetails() {
 
   return (
     <div className="rounded-2xl min-w-[280px] w-[100%] sm:w-[30%] p-6 border dark:bg-[#181818] bg-[#efefef]">
-      {loading && (
-        <ClipLoader loading={loading} size={16} color="text-primary" />
-      )}
+      <div className="flex">
+        {loading && (
+          <ClipLoader
+            loading={loading}
+            size={20}
+            color="text-primary"
+            className="mx-auto"
+          />
+        )}
+      </div>
       {error && <p className="text-red-500">{error}</p>}
       {!loading && !error && (
         <>

@@ -49,9 +49,16 @@ export function SubmissionData({ days }: { days: number }) {
 
   return (
     <div className="mt-4 flex flex-col gap-4">
-      {loading && (
-        <ClipLoader loading={loading} size={16} color="text-primary" />
-      )}
+      <div className="flex">
+        {loading && (
+          <ClipLoader
+            loading={loading}
+            size={20}
+            color="text-primary"
+            className="mx-auto"
+          />
+        )}
+      </div>
       {error && <p className="text-red-500">{error}</p>}
       {!error && !loading && (
         <>

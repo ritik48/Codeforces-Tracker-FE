@@ -199,7 +199,10 @@ export function StudentTable() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/students/${student._id}`);
+                        }}
                       >
                         View
                       </Button>

@@ -97,9 +97,16 @@ export function ContestList({ days }: { days: number }) {
 
   return (
     <div className="my-10">
-      {loading && (
-        <ClipLoader loading={loading} size={16} color="text-primary" />
-      )}
+      <div className="flex">
+        {loading && (
+          <ClipLoader
+            loading={loading}
+            size={20}
+            color="text-primary"
+            className="mx-auto"
+          />
+        )}
+      </div>
       {!error && !loading && (
         <div className="overflow-x-auto sm:mt-0 mt-8">
           <Table>

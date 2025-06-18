@@ -62,9 +62,16 @@ export function RatingChart({ days }: { days: number }) {
 
   return (
     <div className="w-full border rounded-xl p-4 shadow-sm">
-      {loading && (
-        <ClipLoader loading={loading} size={16} color="text-primary" />
-      )}
+      <div className="flex">
+        {loading && (
+          <ClipLoader
+            loading={loading}
+            size={20}
+            color="text-primary"
+            className="mx-auto"
+          />
+        )}
+      </div>
       {error && <p className="text-red-500">{error}</p>}
       {!loading && !error && (
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
