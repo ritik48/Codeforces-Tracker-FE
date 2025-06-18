@@ -20,11 +20,13 @@ import { ClipLoader } from "react-spinners";
 export function EmailNotificationToggle({
   email,
   id,
+  allow_email
 }: {
   email?: string;
   id: string;
+  allow_email: boolean;
 }) {
-  const [isOn, setIsOn] = useState(Boolean(email));
+  const [isOn, setIsOn] = useState(Boolean(email && allow_email));
   const [showDialog, setShowDialog] = useState(false);
   const [emailInput, setEmailInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,7 @@ export function EmailNotificationToggle({
     try {
       setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 3000));
-      const res = await updateEmailApi(id, email!, false);
+      const res = await updateEmailApi(id, email!, checked);
 
       if (!res.success) {
         toast.error("Failed to update email service.");
