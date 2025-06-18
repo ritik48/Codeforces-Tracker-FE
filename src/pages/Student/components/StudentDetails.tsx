@@ -76,17 +76,40 @@ export function StudentDetails() {
           <div className="mt-4 space-y-3 text-xs sm:text-sm">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4" />
-              <span>
-                Rating: {data?.current_rating || 0} (max:{" "}
-                {data?.max_rating || 0})
-              </span>
+              <div className="flex flex-col items-start">
+                <span className="text-muted-foreground font-medium">
+                  Rating:{" "}
+                </span>
+                <span>
+                  {data?.current_rating || 0} (max: {data?.max_rating || 0})
+                </span>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
               <MessageCircle className="w-4 h-4" />
-              <span>Last Synced: 06/01/2025</span>
+              <div className="flex flex-col items-start">
+                <span className="text-muted-foreground font-medium">
+                  Last Synced:
+                </span>{" "}
+                <span>
+                  {data?.last_sync
+                    ? new Date(data.last_sync).toLocaleString("en-US", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : "-"}
+                </span>
+              </div>
             </div>
-            <EmailNotificationToggle email={data?.email} id={id!} />
+            <EmailNotificationToggle
+              email={data?.email}
+              id={id!}
+              allow_email={Boolean(data?.allow_email)}
+            />
           </div>
         </>
       )}
