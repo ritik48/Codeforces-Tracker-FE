@@ -13,15 +13,7 @@ import {
 } from "@/components/ui/chart";
 import { Line, LineChart, XAxis, YAxis } from "recharts";
 import { ClipLoader } from "react-spinners";
-
-interface ContestDataType {
-  contestName: string;
-  date: string;
-  oldRating: number;
-  newRating: number;
-  rank: number;
-  unsolvedProblems: number;
-}
+import type { ContestDataType } from "@/types";
 
 export function RatingChart({ days }: { days: number }) {
   const { id } = useParams();
