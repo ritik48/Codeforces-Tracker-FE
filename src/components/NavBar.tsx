@@ -24,7 +24,7 @@ export const NavBar = () => {
         </div>
         <div className="flex items-center gap-3">
           {username && (
-            <span className="text-xs sm:block hidden">
+            <span className="sm:block hidden">
               Welcome👋, {username}
             </span>
           )}
