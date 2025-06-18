@@ -26,6 +26,7 @@ const studentTableHeader: { key: keyof StudentType; label: string }[] = [
   { key: "cf_handle", label: "Codeforces Handle" },
   { key: "current_rating", label: "Current Rating" },
   { key: "max_rating", label: "Max Rating" },
+  { key: "last_sync", label: "Last Synced" },
 ];
 
 export function StudentTable() {
@@ -173,6 +174,17 @@ export function StudentTable() {
                   <TableCell>{student.cf_handle}</TableCell>
                   <TableCell>{student.current_rating || "-"}</TableCell>
                   <TableCell>{student.max_rating || "-"}</TableCell>
+                  <TableCell>
+                    {student.last_sync
+                      ? new Date(student.last_sync).toLocaleString("en-US", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "-"}
+                  </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       <CreateAndEditStudentDialog
