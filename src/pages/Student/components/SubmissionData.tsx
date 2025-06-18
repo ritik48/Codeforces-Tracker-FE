@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SubmissionStats } from "./SubmissionStats";
 import { ClipLoader } from "react-spinners";
+import { RatingBarChart } from "./RatingBarChart";
 
 interface SubmissionDataType {
   mostDifficultProblem: number;
   totalSolvedProblems: number;
   averageRating: number;
   averageProblemPerDay: number;
-  ratingBucketData: { label: string; count: number }[];
+  ratingBucketData: { rating: string; count: number }[];
   heatmap: { date: string; count: number }[];
 }
 
@@ -48,18 +49,21 @@ export function SubmissionData({ days }: { days: number }) {
   }, [days]);
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex flex-col gap-4">
       {loading && (
         <ClipLoader loading={loading} size={16} color="text-primary" />
       )}
       {error && <p className="text-red-500">{error}</p>}
       {!error && !loading && (
-        <SubmissionStats
-          mostDifficultProblem={submissionData?.mostDifficultProblem}
-          totalSolvedProblems={submissionData?.totalSolvedProblems || 0}
-          averageRating={submissionData?.averageRating || 0}
-          averageProblemPerDay={submissionData?.averageProblemPerDay || 0}
-        />
+        <>
+          <SubmissionStats
+            mostDifficultProblem={submissionData?.mostDifficultProblem}
+            totalSolvedProblems={submissionData?.totalSolvedProblems || 0}
+            averageRating={submissionData?.averageRating || 0}
+            averageProblemPerDay={submissionData?.averageProblemPerDay || 0}
+          />
+          <RatingBarChart data={submissionData?.ratingBucketData || []} />
+        </>
       )}
     </div>
   );
