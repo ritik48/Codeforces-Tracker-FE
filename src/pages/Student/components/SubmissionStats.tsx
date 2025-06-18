@@ -42,7 +42,7 @@ export function SubmissionStats({
           <div className="text-center">
             <TrendingUp className="h-8 w-8 text-purple-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600 mb-1">Avg Rating</p>
-            <p className="sm:text-2xl font-bold">{averageRating}</p>
+            <p className="sm:text-2xl font-bold">{Math.ceil(averageRating)}</p>
           </div>
         </CardContent>
       </Card>
