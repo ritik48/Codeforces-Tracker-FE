@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Pagination } from "./Pagination";
+import { Pagination } from "../../../components/Pagination";
 import { fetchAllStudents } from "@/apis/student";
 import { useNavigate } from "react-router-dom";
 import type { StudentType } from "@/types";
