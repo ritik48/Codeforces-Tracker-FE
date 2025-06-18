@@ -1,26 +1,10 @@
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { NavBar } from "./components/NavBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { AllStudent } from "./pages/AllStudents/AllStudent";
-import { ThemeProvider } from "./components/theme-provider";
 import { Login } from "./pages/Login";
-import { Toaster } from "./components/ui/sonner";
-import { AuthProvider } from "./contexts/AuthContext";
 import { Student } from "./pages/Student/Student";
-
-export const Layout = () => {
-  return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <AuthProvider>
-        <div>
-          <NavBar />
-          <Outlet />
-        </div>
-      </AuthProvider>
-      <Toaster position="top-right" offset={{ top: 60 }} />
-    </ThemeProvider>
-  );
-};
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Layout } from "./components/Layout";
 
 function App() {
   return (
@@ -29,8 +13,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/students" element={<AllStudent />} />
-          <Route path="/students/:id" element={<Student />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/students" element={<AllStudent />} />
+            <Route path="/students/:id" element={<Student />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
