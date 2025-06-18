@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import type { StudentType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Info } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
@@ -159,6 +160,14 @@ export function CreateAndEditStudentForm({
                 </FormItem>
               )}
             />
+            {isSubmitting && (
+              <div className="flex items-center gap-2 my-2">
+                <Info className="w-4 h-4" />
+                <p className="text-sm text-muted-foreground">
+                  Please stay on this dialog. It might take a while to submit.
+                </p>
+              </div>
+            )}
             <Button disabled={isSubmitting} className="mt-3" type="submit">
               {isSubmitting
                 ? "Submitting..."
