@@ -128,3 +128,28 @@ export const editStudentApi = async (
     };
   }
 };
+
+export const fetchStudentApi = async (studentId: string) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/student/${studentId}`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to fetch student",
+      };
+    }
+
+    return { success: true, data: data.data };
+  } catch (error) {
+    console.error("Failed to fetch student:", error);
+    return {
+      success: false,
+      message: "Failed to fetch student due to an error",
+    };
+  }
+}
