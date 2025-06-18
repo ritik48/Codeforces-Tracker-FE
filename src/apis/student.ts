@@ -189,3 +189,37 @@ export const fetchContestDataApi = async (
     };
   }
 };
+
+export const fetchSubmissionDataApi = async (
+  studentId: string,
+  days: number
+) => {
+  const url =
+    BACKEND_URL + `/student/${studentId}/submission-data?days=${days}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to fetch submission data",
+      };
+    }
+
+    return {
+      success: true,
+      data: data.data,
+    };
+  } catch (error) {
+    console.error("Failed to fetch submission data:", error);
+    return {
+      success: false,
+      message: "Failed to fetch submission data due to an error",
+    };
+  }
+};
