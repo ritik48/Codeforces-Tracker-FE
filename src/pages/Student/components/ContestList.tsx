@@ -42,7 +42,7 @@ export function ContestList({ days }: { days: number }) {
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 2;
+  const limit = 10;
 
   const [sortField, setSortField] =
     useState<keyof ContestDataTypeExtended>("contestName");
@@ -53,7 +53,7 @@ export function ContestList({ days }: { days: number }) {
       setError("");
       setLoading(true);
       const res = await fetchContestDataApi(id!, days, limit, page);
-      console.log({ res });
+
       if (!res.success) {
         setError(res.message);
         return;
