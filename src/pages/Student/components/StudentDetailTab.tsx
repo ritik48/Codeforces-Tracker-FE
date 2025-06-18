@@ -19,10 +19,10 @@ export function StudentDetailsTab() {
   };
 
   return (
-    <div className="w-full gap-2">
+    <div className="w-full gap-2 overflow-hidden">
       <Tabs value={currentTab} onValueChange={handleTabChange}>
-        <div className="flex w-full gap-3">
-          <TabsList>
+        <div className="flex w-fit flex-wrap gap-3">
+          <TabsList className="flex flex-wrap">
             <TabsTrigger value="contest-history">Contest History</TabsTrigger>
             <TabsTrigger value="submission-data">Submission Data</TabsTrigger>
           </TabsList>

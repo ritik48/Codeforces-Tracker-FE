@@ -101,7 +101,7 @@ export function ContestList({ days }: { days: number }) {
         <ClipLoader loading={loading} size={16} color="text-primary" />
       )}
       {!error && !loading && (
-        <div className="overflow-y-auto sm:mt-0 mt-8">
+        <div className="overflow-x-auto sm:mt-0 mt-8">
           <Table>
             <TableHeader>
               <TableRow>

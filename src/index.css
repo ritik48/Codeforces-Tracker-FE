@@ -118,3 +118,49 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* =================== TO MODIFY THE CALENDAR HEATMAP =================== */
+
+.color-empty {
+  fill: #ebedf0;
+}
+
+.dark .color-empty {
+  fill: #1e293b !important;
+}
+.color-scale-1 {
+  fill: #c6e48b;
+}
+.color-scale-2 {
+  fill: #7bc96f;
+}
+.color-scale-3 {
+  fill: #239a3b;
+}
+.color-scale-4 {
+  fill: #196127;
+}
+
+.dark .color-scale-1 {
+  fill: #003f1f !important; /* Darkest green for least activity */
+}
+
+.dark .color-scale-2 {
+  fill: #016b34 !important; /* Slightly brighter green */
+}
+
+.dark .color-scale-3 {
+  fill: #03a94e !important; /* Bright green */
+}
+
+.dark .color-scale-4 {
+  fill: #8bff8f !important; /* Lightest green, for max activity */
+}
+
+.react-calendar-heatmap-month-label {
+  font-size: 8px !important;
+}
+
+.react-calendar-heatmap-weekday-label {
+  font-size: 8px !important;
+}
