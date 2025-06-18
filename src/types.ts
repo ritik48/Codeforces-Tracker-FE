@@ -11,6 +11,7 @@ export interface StudentType {
   rank?: string;
   max_rank?: string;
   last_sync?: Date;
+  profile_picture?: string;
 }
 
 export interface ContestDataType {

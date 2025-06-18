@@ -54,7 +54,9 @@ export function StudentDetails() {
         <>
           <div className="flex items-center gap-4">
             <Avatar className="w-14 h-14">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage
+                src={data?.profile_picture || "https://github.com/shadcn.png"}
+              />
               <AvatarFallback>{avatarName}</AvatarFallback>
             </Avatar>
 
