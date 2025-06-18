@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { z } from "zod";
 
 const userSchema = z.object({
@@ -24,16 +24,19 @@ export function Login() {
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
   });
+  const [searchParams] = useSearchParams();
+  const redirectPath = searchParams.get("redirectTo") || "/";
+
   const { login, username } = useAuth();
 
   const isSubmitting = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof userSchema>) => {
-    login(values.username, values.password);
+    login(values.username, values.password, redirectPath);
   };
 
   if (username) {
-    return <Navigate to="/" replace={true} />;
+    return <Navigate to={redirectPath} replace={true} />;
   }
 
   return (
