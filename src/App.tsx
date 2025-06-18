@@ -1,11 +1,12 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home/Home";
-import { Student } from "./pages/AllStudents/AllStudent";
+import { AllStudent } from "./pages/AllStudents/AllStudent";
 import { ThemeProvider } from "./components/theme-provider";
 import { Login } from "./pages/Login";
 import { Toaster } from "./components/ui/sonner";
 import { AuthProvider } from "./contexts/AuthContext";
+import { Student } from "./pages/Student/Student";
 
 export const Layout = () => {
   return (
@@ -28,7 +29,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/students" element={<Student />} />
+          <Route path="/students" element={<AllStudent />} />
+          <Route path="/students/:id" element={<Student />} />
         </Route>
       </Routes>
     </BrowserRouter>
