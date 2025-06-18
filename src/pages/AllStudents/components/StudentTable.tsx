@@ -163,7 +163,7 @@ export function StudentTable() {
                 <TableRow
                   className="cursor-pointer"
                   onClick={() => {
-                    navigate(`/student/${student._id}`);
+                    navigate(`/students/${student._id}`);
                   }}
                   key={student._id}
                 >
@@ -180,14 +180,6 @@ export function StudentTable() {
                         setStudents={setStudents}
                         student={student}
                       />
-
-                      {/* <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={(e) => e.stopPropagation()} // Prevent row click when clicking button
-                      >
-                        Edit
-                      </Button> */}
                       <DeleteStudentButton
                         studentId={student._id}
                         setStudents={setStudents}
