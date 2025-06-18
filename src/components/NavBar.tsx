@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const NavBar = () => {
   const { username, logout } = useAuth();
   return (
-    <div className="border-b">
+    <div className="border-b sticky top-0 z-10 bg-secondary">
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex items-center gap-6 sm:gap-20">
           <Link to={"/"} className="font-bold sm:block hidden">
