@@ -152,4 +152,40 @@ export const fetchStudentApi = async (studentId: string) => {
       message: "Failed to fetch student due to an error",
     };
   }
-}
+};
+
+export const fetchContestDataApi = async (
+  studentId: string,
+  days: number,
+  limit?: number,
+  page?: number
+) => {
+  const url = `${BACKEND_URL}/student/${studentId}/contest-history?days=${days}`;
+  const finalUrl = limit && page ? `${url}&limit=${limit}&page=${page}` : url;
+  try {
+    const response = await fetch(finalUrl, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Failed to fetch contest data",
+      };
+    }
+
+    return {
+      success: true,
+      data: data.data,
+      totalPages: data.pagination.totalPages,
+    };
+  } catch (error) {
+    console.error("Failed to fetch contest data:", error);
+    return {
+      success: false,
+      message: "Failed to fetch contest data due to an error",
+    };
+  }
+};
