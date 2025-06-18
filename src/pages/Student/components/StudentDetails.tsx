@@ -45,7 +45,7 @@ export function StudentDetails() {
       .join("") || data?.cf_handle?.slice(0, 2).toUpperCase();
 
   return (
-    <div className="rounded-2xl min-w-[280px] w-1/4 p-6 border dark:bg-[#181818] bg-[#efefef]">
+    <div className="rounded-2xl min-w-[280px] w-[100%] sm:w-[30%] p-6 border dark:bg-[#181818] bg-[#efefef]">
       {loading && (
         <ClipLoader loading={loading} size={16} color="text-primary" />
       )}
@@ -62,7 +62,7 @@ export function StudentDetails() {
 
             <div>
               {data?.name && (
-                <h2 className="sm:text-2xl font-semibold">{data?.name}</h2>
+                <h2 className="sm:text-xl font-semibold">{data?.name}</h2>
               )}
               <p className="text-gray-500 dark:text-gray-400 sm:text-base text-xs">
                 @{data?.cf_handle}
