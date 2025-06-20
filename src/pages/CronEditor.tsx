@@ -14,7 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { generateCron, parseCronExpression } from "@/lib/utils";
+import {
+  convertToUtc,
+  cronToDay,
+  generateCron,
+  getLocalTime,
+  parseCronExpression,
+} from "@/lib/utils";
 
 export function CronEditor() {
   const [cron, setCron] = useState("");
@@ -36,11 +42,30 @@ export function CronEditor() {
           return;
         }
 
-        const parsedCron = parseCronExpression(res.cron_time);
+        //  the cron we get is utc based, we need to convert it to local time
+        const parts = res.cron_time.trim().split(" ");
+        const [minuteStr, hourStr, , , dayOfWeek] = parts;
+
+        const minute = parseInt(minuteStr);
+        const hour = parseInt(hourStr);
+
+        // convert time to local time
+        const [localMinute, localHour] = getLocalTime(minute, hour);
+
+        const parsedCron = parseCronExpression(
+          localMinute,
+          localHour,
+          dayOfWeek
+        );
+
+        const localCron = generateCron(
+          `${localHour}:${localMinute}`,
+          cronToDay[dayOfWeek]
+        );
 
         setDay(parsedCron.day);
         setTime(parsedCron.time);
-        setCron(res.cron_time);
+        setCron(localCron);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -52,17 +77,21 @@ export function CronEditor() {
   }, []);
 
   const handleUpdate = async () => {
-    const newCron = generateCron(time, day);
+    // convert time to utc time
+    // save utc based cron to db and display local cron in the UI
+    const utcTime = convertToUtc(time);
+    const utcCron = generateCron(utcTime, day);
+    const localCron = generateCron(time, day);
     setSaving(true);
     try {
-      const res = await updateCronApi(newCron);
+      const res = await updateCronApi(utcCron);
 
       if (!res.success) {
         toast.error(res.message || "Failed to update cron time");
         return;
       }
 
-      setCron(newCron);
+      setCron(localCron);
       toast.success("Cron time updated successfully");
     } catch (err: any) {
       toast.error(err.message);
