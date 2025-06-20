@@ -39,10 +39,14 @@ export function StudentDetails() {
   }, []);
 
   const avatarName =
-    data?.name
-      ?.split(" ")
-      .map((n) => n[0].toUpperCase())
-      .join("") || data?.cf_handle?.slice(0, 2).toUpperCase();
+  data?.name?.trim()
+    ? data.name
+        .split(" ")
+        .filter(Boolean)
+        .map((n) => n[0]?.toUpperCase() || "")
+        .join("")
+    : data?.cf_handle?.slice(0, 2).toUpperCase();
+
 
   return (
     <div className="rounded-2xl min-w-[280px] w-[100%] sm:w-[30%] p-6 border dark:bg-[#181818] bg-[#efefef]">
